@@ -54,7 +54,9 @@ void Image::saveImage(string &filename)
 		cerr << "Erro ao abrir o arquivo para salvar a imagem!" << endl;
 		return;
 	}
-	file << "P3\n" << width << " " << height << "\n" << maxColorValue << "\n";
+	file << "P3\n"
+			 << width << " " << height << "\n"
+			 << maxColorValue << "\n";
 	for (int i = 0; i < height; ++i)
 	{
 		for (int j = 0; j < width; ++j)
@@ -94,6 +96,20 @@ void Image::changePixelColor(int newR, int newG, int newB)
 			pixels[i][j].r = newR;
 			pixels[i][j].g = newG;
 			pixels[i][j].b = newB;
+		}
+	}
+}
+
+void Image::invertImage()
+{
+	for (int i = 0; i < height; ++i)
+	{
+		for (int j = 0; j < width / 2; ++j)
+		{
+			// Troca os pixels (i, j) e (i, width - j - 1)
+			Pixel temp = pixels[i][j];
+			pixels[i][j] = pixels[i][width - j - 1];
+			pixels[i][width - j - 1] = temp;
 		}
 	}
 }

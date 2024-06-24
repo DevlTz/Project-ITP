@@ -17,6 +17,7 @@ class Image {
     void saveImage(std::string &filename);
 		void printImage();
 		void changePixelColor(int newR, int newG, int newB);
+		void invertImage();
 };
 
 #endif
