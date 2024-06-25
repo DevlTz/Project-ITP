@@ -36,11 +36,12 @@ int main()
 		cin >> newR >> newG >> newB;
 
 		image.changePixelColor(newR, newG, newB);
-		cout << "Nova imagem gerada:\n";
+		cout << "Nova imagem gerada!\n";
 	}
 	else if (option == 4)
 	{
 		image.invertImage();
+		cout << "Imagem invertida!\n";
 	}
 	
 

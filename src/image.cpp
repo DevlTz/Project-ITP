@@ -113,3 +113,4 @@ void Image::invertImage()
 		}
 	}
 }
+
