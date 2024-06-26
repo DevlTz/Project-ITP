@@ -1,10 +1,9 @@
-#include "../inc/Image.h"
+#include "../../inc/Image.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <fstream>
-#include "Image.h"
 
 using namespace std;
 
@@ -18,7 +17,7 @@ bool Image::loadImage(string &filename)
 	{
 		return false;
 	}
-
+	if(!)
 	string format;
 	file >> format;
 
@@ -49,10 +48,10 @@ bool Image::loadImage(string &filename)
 
 void Image::saveImage(string &filename)
 {
-	ofstream file(filename, ofstream::out | ofstream::trunc);
+	ofstream file(filename);
 	if (!file.is_open())
 	{
-		cout << "Erro ao abrir o arquivo para salvar a imagem!" << endl;
+		cerr << "Erro ao abrir o arquivo para salvar a imagem!" << endl;
 		return;
 	}
 	file << "P3\n"
@@ -100,53 +99,13 @@ void Image::changePixelColor(int newR, int newG, int newB)
 		}
 	}
 }
-
-void Image::invertImage()
-{
-	for (int i = 0; i < height; ++i)
-	{
-		for (int j = 0; j < width / 2; ++j)
-		{
-			// Troca os pixels (i, j) e (i, width - j - 1)
-			Pixel temp = pixels[i][j];
-			pixels[i][j] = pixels[i][width - j - 1];
-			pixels[i][width - j - 1] = temp;
-		}
-	}
-}
-
-
-void Image::decoder(std::string mens(), int size)
-{
-}
-void Image::encode(std::string mens(), int size)
-{
-    for (int i = 0; i < height; i++){
+void Image::encode() {	
+	for (int i = 0; i < height; i++){
 	
 		for (int j=0; j < width; j++){
 
 		}
 	
 }
-// Retorna o valor do ultimo Bit
-int Image::getLastBit(int value)
-{
-	return value & 1;
-}
-
-// Definir o Bit menos significativo
-int Image::setLastBit(int value, int bit)
-{
-	// Se o Bit for 1 define o Bit menos significativo como 1
-	if (bit == 1)
-	{
-		return value | 1;
-	}
-	// Se não como 0
-	else
-	{
-		return value & (value ^ 1);
-	};
-
 }
 

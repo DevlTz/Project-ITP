@@ -1,4 +1,4 @@
-#include "../inc/Image.h"
+#include "../../inc/Image.h"
 #include <iostream>
 #include <string>
 
@@ -14,19 +14,17 @@ int main()
 
 	if (!image.loadImage(inputFileName))
 	{
-		cout << "Erro: não foi possível carregar a imagem.\n";
-		return 1;
+		cout << "Arquivo original não existe.\n";
+		return 0;
+	}
+    else if (!image.loadImage(inputFileName))
+	{
+		cout << "Arquivo original não existe.\n";
+		return 0;
 	}
 
-	image.printImage();
-	cout << "Imagem carregada!\n";
 
-	int option;
-	cout << "Escolha uma opção:\n";
-	cout << "1. Codificar uma mensagem\n";
-	cout << "2. Decodificar uma mensagem\n";
-	cout << "3. Inverter imagem\n";
-	cin >> option;
+
 
 	if (option == 1)
 	{
@@ -37,25 +35,11 @@ int main()
 		image.changePixelColor(newR, newG, newB);
 		cout << "Nova imagem gerada:\n";
 	}
-	else if (option == 2)
-	{
-		image.encode();
-
-
-	}
-	else if (option == 3)
-	{
-		image.decoder();
-	}
-
-	else if (option == 4)
-	{
-		image.invertImage();
-		cout << "Imagem invertida com sucesso!\n";
-	}
 	
+
+
 	string outputFileName;
-	cout << "Digite o nome do arquivo para salvar a imagem modificada:";
+	cout << "Digite o nome do arquivo para salvar a imagem modificada: ";
 	cin >> outputFileName;
 
 	image.saveImage(outputFileName);
@@ -64,3 +48,6 @@ int main()
 
 	return 0;
 }
+
+
+

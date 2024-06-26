@@ -14,12 +14,17 @@ class Image {
 	public:
 		Image();
 		bool loadImage(std::string &filename);
-    void saveImage(std::string &filename);
+    	void saveImage(std::string &filename);
 		void printImage();
 		void changePixelColor(int newR, int newG, int newB);
 		void invertImage();
+
+		void encode(std::string mens(), int size);
+		void decoder(std::string mens(), int size);
+
 		int getLastBit(int value);
 		int setLastBit(int value, int bit);
+
 };
 
 #endif
