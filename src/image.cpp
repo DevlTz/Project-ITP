@@ -48,10 +48,10 @@ bool Image::loadImage(string &filename)
 
 void Image::saveImage(string &filename)
 {
-	ofstream file(filename);
+	ofstream file(filename, ofstream::out | ofstream::trunc);
 	if (!file.is_open())
 	{
-		cerr << "Erro ao abrir o arquivo para salvar a imagem!" << endl;
+		cout << "Erro ao abrir o arquivo para salvar a imagem!" << endl;
 		return;
 	}
 	file << "P3\n"
@@ -113,3 +113,24 @@ void Image::invertImage()
 		}
 	}
 }
+
+// Retorna o valor do ultimo Bit
+int Image::getLastBit(int value)
+{
+	return value & 1;
+}
+
+// Definir o Bit menos significativo
+int Image::setLastBit(int value, int bit)
+{
+	// Se o Bit for 1 define o Bit menos significativo como 1
+	if (bit == 1)
+	{
+		return value | 1;
+	}
+	else
+	{
+		return value & (value ^ 1);
+	};
+}
+

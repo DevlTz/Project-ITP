@@ -18,6 +18,8 @@ class Image {
 		void printImage();
 		void changePixelColor(int newR, int newG, int newB);
 		void invertImage();
+		int getLastBit(int value);
+		int setLastBit(int value, int bit);
 };
 
 #endif
