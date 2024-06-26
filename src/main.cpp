@@ -23,30 +23,19 @@ int main()
 
 	int option;
 	cout << "Escolha uma opção:\n";
-	cout << "1. Mudar a cor dos pixels\n";
-	cout << "2. Codificar uma mensagem\n";
-	cout << "3. Decodificar uma mensagem\n";
-	cout << "4. Inverter imagem\n";
+	cout << "1. Codificar uma mensagem\n";
+	cout << "2. Decodificar uma mensagem\n";
+	cout << "3. Inverter imagem\n";
 	cin >> option;
 
-	if (option == 1)
-	{
-		int newR, newG, newB;
-		cout << "Digite os novos valores para R, G e B: ";
-		cin >> newR >> newG >> newB;
-
-		image.changePixelColor(newR, newG, newB);
-		cout << "Nova imagem gerada!\n";
-	}
-	else if (option == 4)
+	if (option == 3)
 	{
 		image.invertImage();
-		cout << "Imagem invertida!\n";
+		cout << "Imagem invertida com sucesso!\n";
 	}
 	
-
 	string outputFileName;
-	cout << "Digite o nome do arquivo para salvar a imagem modificada: ";
+	cout << "Digite o nome do arquivo para salvar a imagem modificada:";
 	cin >> outputFileName;
 
 	image.saveImage(outputFileName);

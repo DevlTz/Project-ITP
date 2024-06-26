@@ -18,8 +18,8 @@ class Image {
 		void printImage();
 		void changePixelColor(int newR, int newG, int newB);
 		void invertImage();
-		std::string decodeMensage(std::string &fileName);
-		void encodeMensage(std::string &mensage,std::string &fileName);
+		int getLastBit(int value);
+		int setLastBit(int value, int bit);
 };
 
 #endif
