@@ -1,16 +1,22 @@
 #include "../inc/Image.h"
-
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <fstream>
-#include "Image.h"
 
 using namespace std;
+
+// Classe que representa uma imagem
+Image image;
 
 // Construtor padrão da classe Image
 Image::Image() : width(0), height(0), maxColorValue(0), pixels(nullptr) {}
 
+/**
+ * @brief Carrega uma imagem de um arquivo
+ * @param filename Nome do arquivo que contém a imagem
+ * @return true se a imagem foi carregada com sucesso, false caso contrário
+ */
 bool Image::loadImage(string &filename)
 {
 	ifstream file(filename);
@@ -22,7 +28,6 @@ bool Image::loadImage(string &filename)
 	string format;
 	file >> format;
 
-	// Verifica se o formato é P3
 	if (format != "P3")
 	{
 		return false;
@@ -30,7 +35,6 @@ bool Image::loadImage(string &filename)
 
 	file >> width >> height >> maxColorValue;
 
-	// Aloca memória para os pixels da imagem
 	pixels = new Pixel *[height];
 	for (int i = 0; i < height; i++)
 	{
@@ -47,6 +51,10 @@ bool Image::loadImage(string &filename)
 	return true;
 };
 
+/**
+ * @brief Salva a imagem em um arquivo
+ * @param filename Nome do arquivo onde a imagem será salva
+ */
 void Image::saveImage(string &filename)
 {
 	ofstream file(filename, ofstream::out | ofstream::trunc);
@@ -55,6 +63,7 @@ void Image::saveImage(string &filename)
 		cout << "Erro ao abrir o arquivo para salvar a imagem!" << endl;
 		return;
 	}
+
 	file << "P3\n"
 			 << width << " " << height << "\n"
 			 << maxColorValue << "\n";
@@ -62,13 +71,17 @@ void Image::saveImage(string &filename)
 	{
 		for (int j = 0; j < width; ++j)
 		{
-			file << pixels[i][j].r << " " << pixels[i][j].g << " " << pixels[i][j].b << " ";
+			file << pixels[i][j].r << " " << pixels[i][j].g << " " << pixels[i][j].b
+					 << " ";
 		}
 		file << "\n";
 	}
 	file.close();
 }
 
+/**
+ * @brief Imprime a imagem no console
+ */
 void Image::printImage()
 {
 	// Imprime o cabeçalho da imagem
@@ -81,26 +94,16 @@ void Image::printImage()
 	{
 		for (int j = 0; j < width; ++j)
 		{
-			cout << pixels[i][j].r << " " << pixels[i][j].g << " " << pixels[i][j].b << " ";
+			cout << pixels[i][j].r << " " << pixels[i][j].g << " " << pixels[i][j].b
+					 << " ";
 		}
 		cout << "\n";
 	}
 }
 
-void Image::changePixelColor(int newR, int newG, int newB)
-{
-	// Itera por cada pixel da imagem e altera seus valores de cor
-	for (int i = 0; i < height; ++i)
-	{
-		for (int j = 0; j < width; ++j)
-		{
-			pixels[i][j].r = newR;
-			pixels[i][j].g = newG;
-			pixels[i][j].b = newB;
-		}
-	}
-}
-
+/**
+ * @brief Inverte a imagem horizontalmente
+ */
 void Image::invertImage()
 {
 	for (int i = 0; i < height; ++i)
@@ -114,39 +117,3 @@ void Image::invertImage()
 		}
 	}
 }
-
-
-void Image::decoder(std::string mens(), int size)
-{
-}
-void Image::encode(std::string mens(), int size)
-{
-    for (int i = 0; i < height; i++){
-	
-		for (int j=0; j < width; j++){
-
-		}
-	
-}
-// Retorna o valor do ultimo Bit
-int Image::getLastBit(int value)
-{
-	return value & 1;
-}
-
-// Definir o Bit menos significativo
-int Image::setLastBit(int value, int bit)
-{
-	// Se o Bit for 1 define o Bit menos significativo como 1
-	if (bit == 1)
-	{
-		return value | 1;
-	}
-	// Se não como 0
-	else
-	{
-		return value & (value ^ 1);
-	};
-
-}
-
